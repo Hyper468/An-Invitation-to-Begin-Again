@@ -50,18 +50,17 @@ document.addEventListener('DOMContentLoaded', () => {
         "So here I stand, not with a plea,\nBut with a hope, will you meet me?",
         "Let’s talk, not fix, just feel again,\nLike how love danced in summer rain",
         "Not for the past we couldn't mend,\nBut for a bond that doesn't end",
-        "If you still feel that silent spark,\nLet’s build again - heart by heart",
+        "If you still feel that silent spark,\nLet’s build again—heart by heart",
 
-        // --- NEW LINES ADDED HERE ---
         "Let’s not let silence be the author of something still alive,\nSome bonds don’t break they just quietly survive",
         "If there’s still even a flicker, a whisper beneath the ache,\nLet’s sit, not to rewrite but to see what love still wants to make",
         "No blame, no pressure, just two hearts facing the truth,\nLet’s meet soul to soul like we did in our youth",
         "Forgive the moments I faltered, forgive the words unsaid,\nBut see the man I’ve become, not just the past we’ve shed",
         "If ever you doubted where my heart would stay,\nLook in your name, it’s where my tomorrows lay"
-        // --- END OF NEW LINES ---
     ];
 
-    const endingLines = "So Chhavi… if even a whisper of us still lives in your light\nWill you take my hand, and let our hearts reunite?\nNot to chase what was, but to gently begin\nA love reborn, where both of us win.";
+    // Added an extra '\n' to create more vertical space
+    const endingLines = "So Chhavi… if even a whisper of us still lives in your light\nWill you take my hand, and let our hearts reunite?\n\nNot to chase what was, but to gently begin\nA love reborn, where both of us win.";
     // --- END OF POEM CONTENT ---
 
     let currentCoupletIndex = 0;
