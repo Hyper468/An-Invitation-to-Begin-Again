@@ -1,0 +1,120 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Georgia', serif;
+  color: white;
+  background-color: black;
+}
+
+/* Persistent Background Layer */
+.intro-background-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('https://raw.githubusercontent.com/Hyper468/mp3host/main/photo%20flower.jpg');
+  background-size: cover;
+  background-position: center;
+  transition: filter 3s ease-in-out;
+  z-index: 1;
+}
+
+.intro-background-layer.blur {
+  filter: blur(10px);
+}
+
+/* Intro Content Layer - holds the textbox */
+.intro-content-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  transition: opacity 1s ease-in-out;
+}
+
+/* Intro Textbox (styles remain mostly the same) */
+.intro-textbox {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 600px;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.intro-textbox.show {
+  opacity: 1;
+}
+
+.intro-textbox p {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+#continueBtn {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid white;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+#continueBtn:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Poem Container - REVISED FOR CENTERING */
+.poem-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column; /* Stacks children vertically */
+  justify-content: center; /* Centers children vertically in the container */
+  align-items: center;   /* Centers children horizontally in the container */
+  text-align: center;    /* Ensures text within children is centered */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 2;
+}
+
+.poem-container.show {
+  opacity: 1;
+}
+
+#poemTitle {
+  font-size: 3em;
+  margin-bottom: 0; /* Remove default bottom margin */
+  margin-top: 0;    /* Remove default top margin */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  text-decoration: underline; /* Adds an underline */
+    text-decoration-color: rgba(255, 255, 255, 0.7); /* Optional: make underline slightly transparent */
+    text-underline-offset: 8px; /* Optional: adjust distance of underline from text */
+    /* --- END NEW --- */
+}
+
+#poemLine {
+  font-size: 1.5em;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  max-width: 80%;
+  line-height: 1.5;
+  white-space: pre-line;
+  margin-bottom: 40; /* Remove default bottom margin */
+  margin-top: 0px; /* Add a specific top margin if you want space between title and lines */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
