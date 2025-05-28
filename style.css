@@ -118,3 +118,14 @@ body {
   margin-top: 0px; /* Add a specific top margin if you want space between title and lines */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
+/* ... (other CSS rules) ... */
+
+/* VOLUME TEXT */
+.intro-textbox .volume-on-text {
+  font-size: 0.9em;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+/* ... (rest of your CSS) ... */
