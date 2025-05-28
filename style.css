@@ -38,7 +38,7 @@ body {
   transition: opacity 1s ease-in-out;
 }
 
-/* Intro Textbox (styles remain mostly the same) */
+/* Intro Textbox */
 .intro-textbox {
   background-color: rgba(0, 0, 0, 0.5);
   padding: 30px;
@@ -68,13 +68,22 @@ body {
   cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.3s ease;
+  margin-top: 20px; /* Ensures space above button */
 }
 
 #continueBtn:hover {
   background-color: rgba(255, 255, 255, 0.4);
 }
 
-/* Poem Container - REVISED FOR CENTERING */
+/* VOLUME TEXT */
+.intro-textbox .volume-on-text {
+  font-size: 0.9em;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+/* Poem Container */
 .poem-container {
   position: fixed;
   top: 0;
@@ -84,8 +93,8 @@ body {
   display: flex;
   flex-direction: column; /* Stacks children vertically */
   justify-content: center; /* Centers children vertically in the container */
-  align-items: center;   /* Centers children horizontally in the container */
-  text-align: center;    /* Ensures text within children is centered */
+  align-items: center;    /* Centers children horizontally in the container */
+  text-align: center;     /* Ensures text within children is centered */
   opacity: 0;
   transition: opacity 1s ease-in-out;
   z-index: 2;
@@ -97,35 +106,143 @@ body {
 
 #poemTitle {
   font-size: 3em;
-  margin-bottom: 0; /* Remove default bottom margin */
-  margin-top: 0;    /* Remove default top margin */
+  margin-bottom: 0;
+  margin-top: 0;
   opacity: 0;
   transition: opacity 1s ease-in-out;
-  text-decoration: underline; /* Adds an underline */
-    text-decoration-color: rgba(255, 255, 255, 0.7); /* Optional: make underline slightly transparent */
-    text-underline-offset: 8px; /* Optional: adjust distance of underline from text */
-    /* --- END NEW --- */
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.7);
+  text-underline-offset: 8px;
 }
 
 #poemLine {
-  font-size: 1.5em;
+  font-size: 1.5em; /* Default font size for poem lines */
   opacity: 0;
   transition: opacity 1s ease-in-out;
   max-width: 80%;
   line-height: 1.5;
   white-space: pre-line;
-  margin-bottom: 40; /* Remove default bottom margin */
-  margin-top: 0px; /* Add a specific top margin if you want space between title and lines */
+  margin-bottom: 0; /* Ensures no extra space below the last line */
+  margin-top: 20px; /* Space between title and first poem line */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
-/* ... (other CSS rules) ... */
 
-/* VOLUME TEXT */
-.intro-textbox .volume-on-text {
-  font-size: 0.9em;
-  color: rgba(255, 255, 255, 0.8);
-  margin-top: 10px;
-  margin-bottom: 0;
+/* --- NEW CSS FOR FINAL IMAGE AND CAPTION --- */
+#finalScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column; /* Stack image and caption vertically */
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7); /* Slightly darken background for focus */
+  z-index: 4; /* Above all other content */
+  opacity: 0; /* Hidden initially */
+  transition: opacity 2s ease-in-out; /* Fade in effect */
+  pointer-events: none; /* Not clickable when hidden */
 }
 
-/* ... (rest of your CSS) ... */
+#finalScreen.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.final-image {
+  max-width: 80%; /* Ensure it fits on smaller screens */
+  max-height: 70vh; /* Don't let it be too tall */
+  border-radius: 15px; /* Slightly rounded corners */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Add some depth */
+  object-fit: contain; /* Ensure the image scales properly without cropping */
+}
+
+.final-caption {
+  font-size: 2.5em; /* Large, clear text */
+  color: white;
+  margin-top: 30px; /* Space between image and text */
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
+  opacity: 0; /* Hidden initially */
+  animation: fadeInCaption 2s forwards 0.5s; /* Fade in after a small delay */
+}
+
+@keyframes fadeInCaption {
+  to {
+      opacity: 1;
+  }
+}
+
+/* --- Media Queries for Mobile Responsiveness --- */
+
+@media (max-width: 768px) {
+  /* Adjustments for tablets and smaller screens */
+  .intro-textbox {
+      padding: 20px;
+      max-width: 90%;
+  }
+
+  .intro-textbox p {
+      font-size: 1.2em;
+  }
+
+  #continueBtn {
+      font-size: 1em;
+      padding: 8px 15px;
+  }
+
+  #poemTitle {
+      font-size: 3em;
+      text-underline-offset: 5px;
+  }
+
+  #poemLine {
+      font-size: 1.5em; /* Smaller font for poem lines on mobile */
+      max-width: 90%; /* Wider on mobile to use more screen space */
+      line-height: 1.4; /* Slightly tighter line spacing */
+      padding: 0 10px; /* Add some horizontal padding to prevent text from hitting edges */
+  }
+
+  /* Mobile adjustments for final screen */
+  #finalScreen .final-image { /* Target image inside finalScreen */
+      max-width: 90%;
+      max-height: 60vh;
+  }
+
+  #finalScreen .final-caption { /* Target caption inside finalScreen */
+      font-size: 1.8em; /* Smaller on mobile */
+      margin-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Further adjustments for smaller phones */
+  .intro-textbox {
+      padding: 15px;
+  }
+
+  .intro-textbox p {
+      font-size: 1em;
+  }
+
+  #poemTitle {
+      font-size: 2em;
+  }
+
+  #poemLine {
+      font-size: 1.5em; /* Even smaller font for very small screens */
+      max-width: 95%; /* Use almost full width */
+      line-height: 1.3;
+  }
+
+  /* Even smaller mobile adjustments for final screen */
+  #finalScreen .final-image { /* Target image inside finalScreen */
+      max-width: 95%;
+      max-height: 55vh;
+  }
+
+  #finalScreen .final-caption { /* Target caption inside finalScreen */
+      font-size: 1.5em;
+      margin-top: 15px;
+  }
+}
