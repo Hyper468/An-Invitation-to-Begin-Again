@@ -7,22 +7,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const poemContainer = document.querySelector('.poem-container');
     const poemTitleElement = document.getElementById('poemTitle');
     const poemLineElement = document.getElementById('poemLine');
-    // const endingTextbox = document.getElementById('endingTextbox'); // REMOVED: no longer in HTML
-
-    console.log("DOM Content Loaded.");
-    // console.log("endingTextbox element found:", endingTextbox); // REMOVED: no longer needed
-
-    // --- Set background song volume ---
-    if (backgroundSong) {
-        backgroundSong.volume = 0.8; // Set volume to 80%
-        console.log("Background song volume set to 0.8");
-    } else {
-        console.error("Background song element not found!");
-    }
 
     // --- YOUR POEM CONTENT ---
     const poemTitle = "A Story Still Breathing";
 
+    
+    // --- Set background song volume ---
+
+    if (backgroundSong) {
+
+        backgroundSong.volume = 0.8; // Set volume to 80%
+
+        console.log("Background song volume set to 0.8");
+
+    } else {
+
+        console.error("Background song element not found!");
+
+    }
+
+    // Each element in this array is a couplet (or a block of lines to display at once)
     const poemCouplets = [
         "Your love was calm, like morning dew,\nIt showed me skies I never knew",
         "You touched the parts I hid away,\nAnd lit the night inside my day",
@@ -70,73 +74,61 @@ document.addEventListener('DOMContentLoaded', () => {
         "If ever you doubted where my heart would stay,\nLook in your name, it’s where my tomorrows lay"
     ];
 
-    // const endingLines = "..."; // REMOVED: no longer needed
+    // Added an extra '\n' to create more vertical space
+    const endingLines = "So Chhavi… if even a whisper of us still lives in your light\nWill you take my hand, and let our hearts reunite?\n\nNot to chase what was, but to gently begin\nA love reborn, where both of us win.";
+    // --- END OF POEM CONTENT ---
 
     let currentCoupletIndex = 0;
 
     // Initial sequence: background image appears (already there), then blurs, then textbox fades in
     setTimeout(() => {
-        introBackgroundLayer.classList.add('blur');
+        introBackgroundLayer.classList.add('blur'); // Apply blur to the background layer
         setTimeout(() => {
-            introTextbox.classList.add('show');
-        }, 2000);
-    }, 3000);
+            introTextbox.classList.add('show'); // Fade in the textbox
+        }, 2000); // Start fading textbox 2 seconds after blur starts
+    }, 3000); // After 3 seconds, the blur effect starts
 
     continueBtn.addEventListener('click', () => {
-        console.log("Continue button clicked.");
-        introContentLayer.style.opacity = '0';
-        introContentLayer.style.pointerEvents = 'none';
+        // Fade out the intro content layer
+        introContentLayer.style.opacity = '0'; // Fade out the textbox and button
+        introContentLayer.style.pointerEvents = 'none'; // Make content layer unclickable
+
+        // The introBackgroundLayer stays, keeping its blur effect
 
         setTimeout(() => {
-            introContentLayer.style.display = 'none';
-            poemContainer.classList.add('show');
-            backgroundSong.play();
-            console.log("Starting poem section.");
+            introContentLayer.style.display = 'none'; // Hide content layer completely
+
+            poemContainer.classList.add('show'); // Show the poem container over the blurred background
+            backgroundSong.play(); // Start playing the song
 
             // Show poem title
             poemTitleElement.textContent = poemTitle;
             poemTitleElement.style.opacity = '1';
 
             setTimeout(() => {
-                poemTitleElement.style.opacity = '0';
-                console.log("Poem title fading out, starting couplets.");
-                setTimeout(displayPoemCouplets, 1000);
-            }, 3000);
-        }, 1000);
+                poemTitleElement.style.opacity = '0'; // Fade out poem title
+                setTimeout(displayPoemCouplets, 1000); // Start displaying poem lines after title fades out
+            }, 3000); // Poem title stays for 3 seconds
+        }, 1000); // Wait for intro content to fade out
     });
 
     function displayPoemCouplets() {
         if (currentCoupletIndex < poemCouplets.length) {
-            console.log(`Displaying couplet ${currentCoupletIndex + 1}/${poemCouplets.length}`);
             poemLineElement.textContent = poemCouplets[currentCoupletIndex];
-            poemLineElement.style.opacity = '1';
-
-            // No endingTextbox to hide anymore, so this block is removed
-            // if (endingTextbox) {
-            //     endingTextbox.classList.remove('show');
-            //     endingTextbox.style.opacity = '0';
-            //     endingTextbox.style.pointerEvents = 'none';
-            // }
+            poemLineElement.style.opacity = '1'; // Fade in the current couplet
 
             setTimeout(() => {
-                poemLineElement.style.opacity = '0';
+                poemLineElement.style.opacity = '0'; // Fade out the current couplet
                 currentCoupletIndex++;
-                setTimeout(displayPoemCouplets, 600); // Back to 6000ms as requested last time
-            }, 6000); // Back to 6000ms as requested last time
+                setTimeout(displayPoemCouplets, 1000); // Wait for fade out, then display next couplet
+            }, 6000); // Each couplet stays for 6 seconds
         } else {
-            // All couplets displayed - poem simply ends here, no ending lines
-            console.log("All main poem couplets finished.");
-            poemLineElement.style.opacity = '0'; // Ensure the last couplet fades out
-            poemLineElement.style.pointerEvents = 'none'; // Make it unclickable
+            // All couplets displayed, now show the ending lines
+            poemLineElement.textContent = endingLines;
+            poemLineElement.style.opacity = '1'; // Fade in the ending lines
 
-            // No endingTextbox to show anymore, so this block is removed
-            // if (endingTextbox) {
-            //     endingTextbox.textContent = endingLines;
-            //     endingTextbox.classList.add('show');
-            //     console.log("Ending lines textbox should be visible now.");
-            // } else {
-            //     console.error("ERROR: endingTextbox element was not found! Check HTML ID.");
-            // }
+            // Ending lines will stay visible. Add another setTimeout here if you want them to fade out too.
+            console.log("Poem and ending lines finished!");
         }
     }
 });
