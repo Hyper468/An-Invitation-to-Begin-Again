@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 poemLineElement.style.opacity = '0'; // Fade out the current couplet
                 currentCoupletIndex++;
                 setTimeout(displayPoemCouplets, 1000); // Wait for fade out, then display next couplet
-            }, 600); // Each couplet stays for 6 seconds
+            }, 6000); // Each couplet stays for 6 seconds
         } else {
             // All couplets displayed, now show the ending lines
             poemLineElement.textContent = endingLines;
