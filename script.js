@@ -6,18 +6,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const backgroundSong = document.getElementById('backgroundSong');
     const poemContainer = document.querySelector('.poem-container');
     const poemTitleElement = document.getElementById('poemTitle');
-    const poemLineElement = document.getElementById('poemLine');
-    
-    // --- Set background song volume ---
+    const poemLineElement = document.getElementById('poemLine'); // This will display all poem lines, including the ending ones.
 
-    if (backgroundSong) {
-        backgroundSong.volume = 0.8; // Set volume to 80%
-        console.log("Background song volume set to 0.8");
-    } else {
-        console.error("Background song element not found!");
-    }
+    // --- Set background song volume ---
+    if (backgroundSong) {
+        backgroundSong.volume = 0.8; // Set volume to 80%
+        backgroundSong.loop = true; // Ensure the song loops
+        console.log("Background song volume set to 0.8 and loop enabled.");
+    } else {
+        console.error("Background song element not found!");
+    }
 
-    
     // --- YOUR POEM CONTENT ---
     const poemTitle = "A Story Still Breathing";
     // Each element in this array is a couplet (or a block of lines to display at once)
@@ -115,14 +114,40 @@ document.addEventListener('DOMContentLoaded', () => {
                 poemLineElement.style.opacity = '0'; // Fade out the current couplet
                 currentCoupletIndex++;
                 setTimeout(displayPoemCouplets, 1000); // Wait for fade out, then display next couplet
-            }, 6000); // Each couplet stays for 6 seconds
+            }, 600); // Each couplet stays for 6 seconds
         } else {
             // All couplets displayed, now show the ending lines
             poemLineElement.textContent = endingLines;
             poemLineElement.style.opacity = '1'; // Fade in the ending lines
-
-            // Ending lines will stay visible. Add another setTimeout here if you want them to fade out too.
             console.log("Poem and ending lines finished!");
+
+            // --- NEW: Start timer for image after ending lines appear ---
+            setTimeout(endSequence, 15000); // 15 seconds (15000 milliseconds)
         }
+    }
+
+    // --- NEW FUNCTION: Handles the final image and caption ---
+    function endSequence() {
+        console.log("Starting end sequence: displaying image and caption.");
+
+        // Create a new div to hold the image and caption
+        const finalScreen = document.createElement('div');
+        finalScreen.id = 'finalScreen'; // Give it an ID for CSS styling
+        finalScreen.innerHTML = `
+            <img src="https://github.com/Hyper468/An-Invitation-to-Begin-Again/blob/main/552924c5d913f43785c58e07371f8e53.jpg?raw=true" alt="Cat with Flower" class="final-image">
+            <p class="final-caption">Shall we resume?</p>
+        `;
+
+        // Hide poem container content (poem lines)
+        poemContainer.style.opacity = '0'; // Fade out existing poem content
+        poemContainer.style.pointerEvents = 'none'; // Make unclickable
+
+        // Add the new final screen to the body, fade it in
+        document.body.appendChild(finalScreen);
+        // Use a slight delay to allow poemContainer to start fading out
+        setTimeout(() => {
+            finalScreen.classList.add('show'); // Apply 'show' class to fade it in
+            console.log("Final image and caption displayed.");
+        }, 500); // 500ms delay for smoother transition
     }
 });
