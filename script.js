@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "So here I stand, not with a plea,\nBut with a hope, will you meet me?",
         "Let’s talk, not fix, just feel again,\nLike how love danced in summer rain",
         "Not for the past we couldn't mend,\nBut for a bond that doesn't end",
-        "If you still feel that silent spark,\nLet’s build again—heart by heart",
+        "If you still feel that silent spark,\nLet’s build again, heart by heart",
 
         "Let’s not let silence be the author of something still alive,\nSome bonds don’t break they just quietly survive",
         "If there’s still even a flicker, a whisper beneath the ache,\nLet’s sit, not to rewrite but to see what love still wants to make",
