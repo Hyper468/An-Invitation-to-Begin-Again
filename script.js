@@ -7,25 +7,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const poemContainer = document.querySelector('.poem-container');
     const poemTitleElement = document.getElementById('poemTitle');
     const poemLineElement = document.getElementById('poemLine');
-
-    // --- YOUR POEM CONTENT ---
-    const poemTitle = "A Story Still Breathing";
-
     
     // --- Set background song volume ---
 
     if (backgroundSong) {
-
         backgroundSong.volume = 0.8; // Set volume to 80%
-
         console.log("Background song volume set to 0.8");
-
     } else {
-
         console.error("Background song element not found!");
-
     }
 
+    
+    // --- YOUR POEM CONTENT ---
+    const poemTitle = "A Story Still Breathing";
     // Each element in this array is a couplet (or a block of lines to display at once)
     const poemCouplets = [
         "Your love was calm, like morning dew,\nIt showed me skies I never knew",
