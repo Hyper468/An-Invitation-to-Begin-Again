@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
         finalScreen.id = 'finalScreen'; // Give it an ID for CSS styling
         finalScreen.innerHTML = `
             <img src="https://github.com/Hyper468/An-Invitation-to-Begin-Again/blob/main/552924c5d913f43785c58e07371f8e53.jpg?raw=true" alt="Cat with Flower" class="final-image">
-            <p class="final-caption">Shall we resume?</p>
+            <p class="final-caption">Shall we resume our story?</p>
         `;
 
         // Hide poem container content (poem lines)
